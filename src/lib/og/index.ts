@@ -130,12 +130,10 @@ const loadDynamicAsset = ({ emoji }: { emoji?: EmojiType }) => {
 	};
 };
 
-export function imageResponse(
+export function imageResponse<T extends Record<string, unknown>>(
 	// my god, this type
-	component: ComponentType<
-		SvelteComponentTyped<Record<string, any>, Record<string, unknown>, Record<string, never>>
-	>,
-	props: Record<string, any> = {},
+	component: ComponentType<SvelteComponentTyped<T, Record<string, unknown>, Record<string, never>>>,
+	props: T = {} as T,
 	options: ImageResponseOptions = {}
 ) {
 	const extendedOptions = Object.assign(
